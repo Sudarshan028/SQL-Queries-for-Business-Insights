@@ -32,6 +32,7 @@ FROM (
 ) AS results;
 ```
 - **Focus**: The subquery calculates the average profit margin for each category, and the main query ranks these categories.
+  
 ![image](https://github.com/Sudarshan028/SQL-Queries-for-Business-Insights/assets/160358210/b2f032d1-1ba8-4cbc-be71-dbea3939c991)
 
 
@@ -50,6 +51,7 @@ FROM re
 WHERE avg_discount = (SELECT MAX(avg_discount) FROM re);
 ```
 - **Focus**: The CTE `re` aggregates sales, profit, and discount by segment, while the main query finds the segment with the highest average discount.
+
 ![image](https://github.com/Sudarshan028/SQL-Queries-for-Business-Insights/assets/160358210/b7011082-f63e-4c74-99fd-d5742dc0dda9)
 
 
@@ -68,6 +70,7 @@ GROUP BY sub_category
 ORDER BY avg_sales DESC;
 ```
 - **Focus**: The CTE `mi` calculates the average quantity, and the main query filters orders based on this average to find the top sub-category by average sales.
+
 ![image](https://github.com/Sudarshan028/SQL-Queries-for-Business-Insights/assets/160358210/94d176c1-95e0-42da-b5d6-15c8f0d32245)
 
 
@@ -87,6 +90,7 @@ GROUP BY customer_id
 ORDER BY total_sales1 DESC;
 ```
 - **Focus**: The CTE `lk` aggregates sales by customer and order, while the main query sums these sales to get the total sales per customer.
+
 ![image](https://github.com/Sudarshan028/SQL-Queries-for-Business-Insights/assets/160358210/30fa34f0-8f0b-4b1c-8d51-fff3f859cfbe)
 
 
@@ -106,6 +110,7 @@ GROUP BY state
 ORDER BY total_sales1 DESC;
 ```
 - **Focus**: The CTE `et` aggregates sales, profit, and discount by state, and the main query identifies the state with the highest total sales.
+
 ![image](https://github.com/Sudarshan028/SQL-Queries-for-Business-Insights/assets/160358210/0216f719-08ed-45ff-afb0-34dc4300fea4)
 
 
@@ -134,6 +139,7 @@ FROM tm
 GROUP BY city, city_wise_orders, rank_orders, total_orders;
 ```
 - **Focus**: The CTEs `st`, `mt`, `qt`, and `tm` sequentially count orders per city, rank them, calculate the total number of orders, and then compute the percentage contribution.
+
 ![image](https://github.com/Sudarshan028/SQL-Queries-for-Business-Insights/assets/160358210/d8f745c5-e273-4b1b-af91-e3bbd13bde00)
 
 ## Shipping Mode Analysis
@@ -152,6 +158,7 @@ GROUP BY ship_mode
 ORDER BY total_used DESC;
 ```
 - **Focus**: The CTE `pt` calculates the average profit, and the main query counts the occurrences of each shipping mode for orders exceeding this average.
+
 ![image](https://github.com/Sudarshan028/SQL-Queries-for-Business-Insights/assets/160358210/2f7cd3ea-6da8-45c1-8398-c8d4970429f3)
 
 
@@ -171,11 +178,11 @@ GROUP BY category;
 ```
 - **Focus**: The CTE `dis` aggregates discounts by order and category, and the main query computes the discount range per category.
 
+![image](https://github.com/Sudarshan028/SQL-Queries-for-Business-Insights/assets/160358210/dac5d636-3026-44ee-865b-09dfe963e130)
+
 ## Average Quantity Sold per Category
 
 This query calculates the average quantity sold for each product category and identifies the category with the highest total sales.
-![image](https://github.com/Sudarshan028/SQL-Queries-for-Business-Insights/assets/160358210/dac5d636-3026-44ee-865b-09dfe963e130)
-
 
 ```sql
 WITH er AS (
@@ -189,6 +196,7 @@ GROUP BY category
 ORDER BY total_final_sales DESC;
 ```
 - **Focus**: The CTE `er` aggregates quantities and sales by category and order, and the main query calculates average quantities and total sales per category.
+
 ![image](https://github.com/Sudarshan028/SQL-Queries-for-Business-Insights/assets/160358210/f720c549-ebc1-4dcb-b93a-22f86a3f15e3)
 
 
@@ -207,6 +215,7 @@ FROM ts
 GROUP BY customer_id;
 ```
 - **Focus**: The CTE `ts` aggregates sales by customer and order, and the main query calculates the sales range for each customer.
+
 ![image](https://github.com/Sudarshan028/SQL-Queries-for-Business-Insights/assets/160358210/426c41b8-e5b7-410c-9423-11eba75dd2e6)
 
 
@@ -232,6 +241,7 @@ SELECT *, (profit_yearwise / total_profit * 100.0) AS percentage_contribute
 FROM ty;
 ```
 - **Focus**: The CTEs `st`, `yt`, `tm`, and `ty` sequentially calculate the total profit, extract the year from shipping dates, aggregate profits by year, and compute the yearly percentage contribution to total profit.
+
 ![image](https://github.com/Sudarshan028/SQL-Queries-for-Business-Insights/assets/160358210/080e8490-e694-48db-b2ad-104f39a46dcb)
 
 
@@ -257,6 +267,7 @@ FROM tu
 WHERE tu.ship_mode = 'second class';
 ```
 - **Focus**: The CTEs `tt`, `tu`, and `ad` calculate the average sales, count orders by shipping mode, and compute the percentage of second class shipments.
+
 ![image](https://github.com/Sudarshan028/SQL-Queries-for-Business-Insights/assets/160358210/2e42a77a-03cc-446b-8838-a3279d20846d)
 
 
@@ -283,6 +294,7 @@ SELECT ht.*, (ht.total_sales / (SELECT overall_sales FROM cb)) * 100 AS percenta
 FROM ht;
 ```
 - **Focus**: The CTEs `cv`, `tv`, `cb`, and `ht` sequentially aggregate sales by customer, calculate total and overall sales, and rank customers based on total sales.
+
 ![image](https://github.com/Sudarshan028/SQL-Queries-for-Business-Insights/assets/160358210/586209a4-e4d3-4bee-822a-6615134194c2)
 
 
@@ -301,6 +313,7 @@ GROUP BY category
 ORDER BY avg_discount DESC;
 ```
 - **Focus**: The CTE `ui` calculates the average quantity, and the main query filters orders based on this average to find the category with the highest average discount.
+
 ![image](https://github.com/Sudarshan028/SQL-Queries-for-Business-Insights/assets/160358210/a809ee75-7316-42e4-9aae-65ee45396f3d)
 
 
